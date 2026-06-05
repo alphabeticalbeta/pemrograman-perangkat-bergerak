@@ -1,7 +1,17 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
+// Import file halaman Bagian 1 (akan kita buat setelah ini)
+import 'syarat_cuti_page.dart'; 
+// Import file halaman Bagian 2 (akan kita buat setelah ini)
+import 'daftar_pegawai_page.dart';
+// Import file halaman Bagian 3 (akan kita buat setelah ini)
+import 'dashboard_menu_page.dart';
+// Import file halaman Bagian 4 (akan kita buat setelah ini)
+import 'input_data_page.dart';
+// Import file halaman Bagian 5 (akan kita buat setelah ini)
+import 'form_validasi_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,156 +21,99 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HalamanProfil(),
+      title: 'HR Portal App',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const HalamanMenuUtama(),
     );
   }
 }
 
-class HalamanProfil extends StatelessWidget {
-  const HalamanProfil({super.key});
+class HalamanMenuUtama extends StatelessWidget {
+  const HalamanMenuUtama({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profil Karyawan'),
-        backgroundColor: Colors.blue,
+        title: const Text('Modul 11: HR Portal'),
+        backgroundColor: Colors.blueAccent,
       ),
-body: Padding(
+      body: ListView(
         padding: const EdgeInsets.all(16.0),
-        // Kita gunakan Column utama untuk membungkus Kartu Profil dan Menu Aksi
-        child: Column(
-          children: [
-            // --- 1. KARTU PROFIL (KODE SEBELUMNYA) ---
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(20.0),
-              decoration: BoxDecoration(
-                color: Colors.blue[50],
-                borderRadius: BorderRadius.circular(15.0),
-                border: Border.all(color: Colors.blue, width: 1.5),
-              ),
-              child: Column(
-                children: [
-                  Text('Budi Santoso', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                  SizedBox(height: 8.0),
-                  Text('Senior Mobile Developer'),
-                  SizedBox(height: 4.0),
-                  Text('NIK: 1992038847', style: TextStyle(color: Colors.grey)),
-                ],
-              ),
-            ),
-            
-            // --- 2. JARAK PEMISAH ---
-            SizedBox(height: 40.0), // Spasi transparan pemisah antara kartu dan menu
-            
-            // --- 3. MENU AKSI CEPAT (PRAKTIK ROW & COLUMN) ---
-            Row(
-              // mainAxisAlignment pada Row mengatur perataan horizontal
-              // spaceEvenly: membagi sisa ruang kosong secara merata di antara setiap anak
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
-              children: [
-                
-                // Menu 1: Absen (Ikon dan Teks disusun ke bawah dengan Column)
-                Column(
-                  children: [
-                    Icon(Icons.fingerprint, size: 50.0, color: Colors.blue),
-                    SizedBox(height: 8.0),
-                    Text('Absen', style: TextStyle(fontWeight: FontWeight.w600)),
-                  ],
-                ),
-                
-                // Menu 2: Cuti
-                Column(
-                  children: [
-                    Icon(Icons.calendar_month, size: 50.0, color: Colors.orange),
-                    SizedBox(height: 8.0),
-                    Text('Cuti', style: TextStyle(fontWeight: FontWeight.w600)),
-                  ],
-                ),
-                
-                // Menu 3: Slip Gaji
-                Column(
-                  children: [
-                    Icon(Icons.receipt_long, size: 50.0, color: Colors.green),
-                    SizedBox(height: 8.0),
-                    Text('Slip Gaji', style: TextStyle(fontWeight: FontWeight.w600)),
-                  ],
-                ),
-                
-              ],
-            ),
-            
-            SizedBox(height: 40.0), // Jarak pemisah sebelum kotak pengumuman
+        children: [
+          // Tombol Navigasi ke Materi Bagian 1
+          ElevatedButton(
+            onPressed: () {
+              // Perintah Navigasi untuk berpindah halaman ke SyaratCutiPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SyaratCutiPage()),
+              );
+            },
+            child: const Text('Bagian 1: Scrollable Widget (Syarat Cuti)'),
+          ),
+          const SizedBox(height: 16), // Spasi pemisah antar tombol
 
-            // --- 4. PENGUMUMAN (PRAKTIK EXPANDED) ---
-            Container(
-              padding: EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: Colors.yellow[100], // Latar belakang kuning muda
-                borderRadius: BorderRadius.circular(10.0),
-                border: Border.all(color: Colors.orange, width: 1.0),
-              ),
-              child: Row(
-                children: [
-                  // Anak ke-1: Ikon Pengumuman
-                  Icon(Icons.info_outline, color: Colors.orange, size: 40.0),
-                  
-                  SizedBox(width: 16.0), // Spasi horizontal antara ikon dan teks
-                  
-                  // Anak ke-2: Teks Panjang (DIBUNGKUS DENGAN EXPANDED)
-                  // Jika Expanded ini dihapus, layar akan memunculkan error garis kuning-hitam (Overflow)
-                  Expanded(
-                    child: Text(
-                      'Pengingat: Seluruh karyawan wajib mengisi form evaluasi kinerja tahunan di HR Portal paling lambat hari Jumat minggu ini.',
-                      style: TextStyle(fontSize: 14.0, color: Colors.black87),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          // Tombol Navigasi ke Materi Bagian 2
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const DaftarPegawaiPage()),
+              );
+            },
+            child: const Text('Bagian 2: ListView (Daftar Pegawai)'),
+          ),
+          
+          const SizedBox(height: 16), // Spasi pemisah antar tombol
 
-            SizedBox(height: 40.0), // Jarak pemisah
+          // Tombol Navigasi ke Materi Bagian 3
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const DashboardMenuPage()),
+              );
+            },
+            child: const Text('Bagian 3: GridView (Dashboard Menu)'),
+          ),
 
-            // --- 5. IKON NOTIFIKASI (PRAKTIK STACK & POSITIONED) ---
-            Center( // Kita ketengahkan agar mudah dilihat
-              child: Stack(
-                // Anak-anak di dalam Stack akan ditumpuk dari indeks 0 (paling bawah) ke indeks terakhir (paling atas)
-                children: [
-                  
-                  // LAPISAN DASAR (Bawah): Ikon Lonceng Besar
-                  Icon(
-                    Icons.notifications,
-                    size: 80.0,
-                    color: Colors.grey[400],
-                  ),
-                  
-                  // LAPISAN ATAS: Badge Merah Notifikasi
-                  // Kita gunakan Positioned untuk menarik badge ini ke pojok kanan atas lonceng
-                  Positioned(
-                    right: 0, // Ditarik mentok ke kanan
-                    top: 5,   // Ditarik 5 piksel dari atas
-                    child: Container(
-                      padding: EdgeInsets.all(6.0),
-                      decoration: BoxDecoration(
-                        color: Colors.red, // Warna badge merah
-                        shape: BoxShape.circle, // Membentuk kotak menjadi lingkaran sempurna
-                        border: Border.all(color: Colors.white, width: 2.0), // Memberi garis tepi putih agar kontras dengan lonceng
-                      ),
-                      child: Text(
-                        '3', // Jumlah notifikasi yang belum dibaca
-                        style: TextStyle(color: Colors.white, fontSize: 14.0, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                  
-                ],
-              ),
-            ),
-          ],
-        ),
+          // ... (Tombol Bagian 3 sebelumnya) ...
+
+          const SizedBox(height: 16), // Spasi pemisah antar tombol
+
+          // Tombol Navigasi ke Materi Bagian 4
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const InputDataPage()),
+              );
+            },
+            child: const Text('Bagian 4: TextField (Input Data)'),
+          ),
+
+          // ... (Tombol Bagian 4 sebelumnya) ...
+
+          const SizedBox(height: 16), // Spasi pemisah antar tombol
+
+          // Tombol Navigasi ke Materi Bagian 5
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const FormValidasiPage()),
+              );
+            },
+            child: const Text('Bagian 5: Validasi Form'),
+          ),
+
+
+          // Ruang untuk tombol-tombol Bagian , 3, dst nantinya...
+
+
+        ],
       ),
-      
     );
   }
 }
