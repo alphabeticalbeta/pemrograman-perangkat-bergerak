@@ -9,6 +9,14 @@ import 'dashboard_menu_page.dart';
 import 'input_data_page.dart';
 // Import file halaman Bagian 5 (akan kita buat setelah ini)
 import 'form_validasi_page.dart';
+// Import file halaman Bagian 6 (akan kita buat setelah ini)
+import 'bottom_nav_page.dart';
+// Import file halaman Bagian 7 (akan kita buat setelah ini)
+import 'drawer_menu_page.dart';
+// Import file halaman Bagian 8 (akan kita buat setelah ini)
+import 'tab_menu_page.dart';
+// Import file halaman Bagian 9 (akan kita buat setelah ini)
+import 'interaksi_khusus_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +43,7 @@ class HalamanMenuUtama extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Modul 11: HR Portal'),
+        title: const Text('Modul 11 dan 12: HR Portal'),
         backgroundColor: Colors.blueAccent,
       ),
       body: ListView(
@@ -108,9 +116,59 @@ class HalamanMenuUtama extends StatelessWidget {
             child: const Text('Bagian 5: Validasi Form'),
           ),
 
+          const SizedBox(height: 16),
 
+          // Tombol Navigasi ke Materi Bagian 6
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const BottomNavPage()),
+              );
+            },
+            child: const Text('Bagian 6: Bottom Navigation Bar'),
+          ),
+
+
+          const SizedBox(height: 16),
+
+          // Tombol Navigasi ke Materi Bagian 7
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const DrawerMenuPage()),
+              );
+            },
+            child: const Text('Bagian 7: Drawer (Menu Samping)'),
+          ),
+
+          const SizedBox(height: 16),
+
+          // Tombol Navigasi ke Materi Bagian 8
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const TabMenuPage()),
+              );
+            },
+            child: const Text('Bagian 8: TabBar (Status Cuti)'),
+          ),
+          
           // Ruang untuk tombol-tombol Bagian , 3, dst nantinya...
+          const SizedBox(height: 16),
 
+          // Tombol Navigasi ke Materi Bagian 9
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const InteraksiKhususPage()),
+              );
+            },
+            child: const Text('Bagian 9: AlertDialog & BottomSheet'),
+          ),
 
         ],
       ),

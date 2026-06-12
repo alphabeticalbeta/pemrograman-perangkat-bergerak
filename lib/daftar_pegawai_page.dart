@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'detail_pegawai_page.dart';
 
 class DaftarPegawaiPage extends StatelessWidget {
   const DaftarPegawaiPage({super.key});
@@ -38,8 +39,15 @@ class DaftarPegawaiPage extends StatelessWidget {
             subtitle: const Text('Divisi IT & Pengembangan'),
             trailing: const Icon(Icons.call, color: Colors.green), // Ikon telepon di kanan
             onTap: () {
-              // Aksi ketika baris ini diklik oleh pengguna
-              debugPrint('Menghubungi ${daftarPegawai[index]}...');
+              // Menavigasi ke halaman detail sambil melempar data nama pegawai
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailPegawaiPage(
+                    namaPegawai: daftarPegawai[index], // Proses Passing Data dilakukan di sini
+                  ),
+                ),
+              );
             },
           );
         },
